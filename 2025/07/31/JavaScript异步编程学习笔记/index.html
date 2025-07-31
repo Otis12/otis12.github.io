@@ -19,26 +19,31 @@
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"otis12.github.io","root":"/","images":"/images","scheme":"Muse","darkmode":false,"version":"8.20.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"copycode":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js"></script>
 
-    <meta name="description" content="一个记录技术学习和生活感悟的地方">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Otis12 的博客">
-<meta property="og:url" content="https://otis12.github.io/index.html">
+    <meta name="description" content="JavaScript异步编程全面解析为什么需要异步编程？JavaScript是单线程的，如果同步执行耗时操作会阻塞主线程，导致页面卡顿。异步编程可以让程序在等待操作完成时继续执行其他代码。 异步编程的发展历程1. 回调函数 (Callback)12345678910&#x2F;&#x2F; 传统回调方式setTimeout(() &#x3D;&gt; &#123;    console.log(&quot;1秒后执行&amp;quot">
+<meta property="og:type" content="article">
+<meta property="og:title" content="JavaScript异步编程学习笔记">
+<meta property="og:url" content="https://otis12.github.io/2025/07/31/JavaScript%E5%BC%82%E6%AD%A5%E7%BC%96%E7%A8%8B%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/index.html">
 <meta property="og:site_name" content="Otis12 的博客">
-<meta property="og:description" content="一个记录技术学习和生活感悟的地方">
+<meta property="og:description" content="JavaScript异步编程全面解析为什么需要异步编程？JavaScript是单线程的，如果同步执行耗时操作会阻塞主线程，导致页面卡顿。异步编程可以让程序在等待操作完成时继续执行其他代码。 异步编程的发展历程1. 回调函数 (Callback)12345678910&#x2F;&#x2F; 传统回调方式setTimeout(() &#x3D;&gt; &#123;    console.log(&quot;1秒后执行&amp;quot">
 <meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2025-07-31T07:23:15.000Z">
+<meta property="article:modified_time" content="2025-07-31T07:25:03.766Z">
 <meta property="article:author" content="Otis12">
-<meta property="article:tag" content="技术,编程,生活,博客">
+<meta property="article:tag" content="JavaScript">
+<meta property="article:tag" content="异步编程">
+<meta property="article:tag" content="Promise">
+<meta property="article:tag" content="async&#x2F;await">
 <meta name="twitter:card" content="summary">
 
 
-<link rel="canonical" href="https://otis12.github.io/">
+<link rel="canonical" href="https://otis12.github.io/2025/07/31/JavaScript%E5%BC%82%E6%AD%A5%E7%BC%96%E7%A8%8B%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">
 
 
 
-<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":true,"isPost":false,"lang":"zh-CN","comments":"","permalink":"","path":"index.html","title":""}</script>
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://otis12.github.io/2025/07/31/JavaScript%E5%BC%82%E6%AD%A5%E7%BC%96%E7%A8%8B%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/","path":"2025/07/31/JavaScript异步编程学习笔记/","title":"JavaScript异步编程学习笔记"}</script>
 
 <script class="next-config" data-name="calendar" type="application/json">""</script>
-<title>Otis12 的博客</title>
+<title>JavaScript异步编程学习笔记 | Otis12 的博客</title>
   
 
 
@@ -71,7 +76,7 @@
 
     <a href="/" class="brand" rel="start">
       <i class="logo-line"></i>
-      <h1 class="site-title">Otis12 的博客</h1>
+      <p class="site-title">Otis12 的博客</p>
       <i class="logo-line"></i>
     </a>
       <p class="site-subtitle" itemprop="description">分享技术与生活</p>
@@ -98,7 +103,7 @@
   
   <aside class="sidebar">
 
-    <div class="sidebar-inner sidebar-overview-active">
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
       <ul class="sidebar-nav">
         <li class="sidebar-nav-toc">
           文章目录
@@ -111,6 +116,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#JavaScript%E5%BC%82%E6%AD%A5%E7%BC%96%E7%A8%8B%E5%85%A8%E9%9D%A2%E8%A7%A3%E6%9E%90"><span class="nav-number">1.</span> <span class="nav-text">JavaScript异步编程全面解析</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%BA%E4%BB%80%E4%B9%88%E9%9C%80%E8%A6%81%E5%BC%82%E6%AD%A5%E7%BC%96%E7%A8%8B%EF%BC%9F"><span class="nav-number">1.1.</span> <span class="nav-text">为什么需要异步编程？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%BC%82%E6%AD%A5%E7%BC%96%E7%A8%8B%E7%9A%84%E5%8F%91%E5%B1%95%E5%8E%86%E7%A8%8B"><span class="nav-number">1.2.</span> <span class="nav-text">异步编程的发展历程</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-%E5%9B%9E%E8%B0%83%E5%87%BD%E6%95%B0-Callback"><span class="nav-number">1.2.1.</span> <span class="nav-text">1. 回调函数 (Callback)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-Promise"><span class="nav-number">1.2.2.</span> <span class="nav-text">2. Promise</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-async-await"><span class="nav-number">1.2.3.</span> <span class="nav-text">3. async&#x2F;await</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%9E%E9%99%85%E5%BA%94%E7%94%A8%E5%9C%BA%E6%99%AF"><span class="nav-number">1.3.</span> <span class="nav-text">实际应用场景</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%BD%91%E7%BB%9C%E8%AF%B7%E6%B1%82"><span class="nav-number">1.3.1.</span> <span class="nav-text">网络请求</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%B9%B6%E5%8F%91%E5%A4%84%E7%90%86"><span class="nav-number">1.3.2.</span> <span class="nav-text">并发处理</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%B8%B8%E8%A7%81%E9%99%B7%E9%98%B1%E5%92%8C%E6%9C%80%E4%BD%B3%E5%AE%9E%E8%B7%B5"><span class="nav-number">1.4.</span> <span class="nav-text">常见陷阱和最佳实践</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-%E9%94%99%E8%AF%AF%E5%A4%84%E7%90%86"><span class="nav-number">1.4.1.</span> <span class="nav-text">1. 错误处理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-%E5%BE%AA%E7%8E%AF%E4%B8%AD%E7%9A%84%E5%BC%82%E6%AD%A5%E6%93%8D%E4%BD%9C"><span class="nav-number">1.4.2.</span> <span class="nav-text">2. 循环中的异步操作</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AD%A6%E4%B9%A0%E6%80%BB%E7%BB%93"><span class="nav-number">1.5.</span> <span class="nav-text">学习总结</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%8B%E4%B8%80%E6%AD%A5%E5%AD%A6%E4%B9%A0%E8%AE%A1%E5%88%92"><span class="nav-number">1.6.</span> <span class="nav-text">下一步学习计划</span></a></li></ol></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -150,16 +156,17 @@
 
     </div>
 
-    <div class="main-inner index posts-expand">
+    <div class="main-inner post posts-expand">
 
-    
+
+  
 
 
 <div class="post-block">
   
   
 
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="https://otis12.github.io/2025/07/31/JavaScript%E5%BC%82%E6%AD%A5%E7%BC%96%E7%A8%8B%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -173,13 +180,13 @@
     </span>
 
     <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | Otis12 的博客">
+      <meta itemprop="name" content="JavaScript异步编程学习笔记 | Otis12 的博客">
       <meta itemprop="description" content="">
     </span>
       <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2025/07/31/JavaScript%E5%BC%82%E6%AD%A5%E7%BC%96%E7%A8%8B%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" class="post-title-link" itemprop="url">JavaScript异步编程学习笔记</a>
-        </h2>
+        <h1 class="post-title" itemprop="name headline">
+          JavaScript异步编程学习笔记
+        </h1>
 
         <div class="post-meta-container">
           <div class="post-meta">
@@ -211,8 +218,7 @@
     
     
     
-    <div class="post-body" itemprop="articleBody">
-          <h1 id="JavaScript异步编程全面解析"><a href="#JavaScript异步编程全面解析" class="headerlink" title="JavaScript异步编程全面解析"></a>JavaScript异步编程全面解析</h1><h2 id="为什么需要异步编程？"><a href="#为什么需要异步编程？" class="headerlink" title="为什么需要异步编程？"></a>为什么需要异步编程？</h2><p>JavaScript是单线程的，如果同步执行耗时操作会阻塞主线程，导致页面卡顿。异步编程可以让程序在等待操作完成时继续执行其他代码。</p>
+    <div class="post-body" itemprop="articleBody"><h1 id="JavaScript异步编程全面解析"><a href="#JavaScript异步编程全面解析" class="headerlink" title="JavaScript异步编程全面解析"></a>JavaScript异步编程全面解析</h1><h2 id="为什么需要异步编程？"><a href="#为什么需要异步编程？" class="headerlink" title="为什么需要异步编程？"></a>为什么需要异步编程？</h2><p>JavaScript是单线程的，如果同步执行耗时操作会阻塞主线程，导致页面卡顿。异步编程可以让程序在等待操作完成时继续执行其他代码。</p>
 <h2 id="异步编程的发展历程"><a href="#异步编程的发展历程" class="headerlink" title="异步编程的发展历程"></a>异步编程的发展历程</h2><h3 id="1-回调函数-Callback"><a href="#1-回调函数-Callback" class="headerlink" title="1. 回调函数 (Callback)"></a>1. 回调函数 (Callback)</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 传统回调方式</span></span><br><span class="line"><span class="built_in">setTimeout</span>(<span class="function">() =&gt;</span> &#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;1秒后执行&quot;</span>);</span><br><span class="line">    <span class="built_in">setTimeout</span>(<span class="function">() =&gt;</span> &#123;</span><br><span class="line">        <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;2秒后执行&quot;</span>);</span><br><span class="line">        <span class="built_in">setTimeout</span>(<span class="function">() =&gt;</span> &#123;</span><br><span class="line">            <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;3秒后执行&quot;</span>);</span><br><span class="line">        &#125;, <span class="number">1000</span>);</span><br><span class="line">    &#125;, <span class="number">1000</span>);</span><br><span class="line">&#125;, <span class="number">1000</span>);</span><br></pre></td></tr></table></figure>
 
 <p><strong>问题</strong>: 回调地狱 (Callback Hell)</p>
@@ -245,7 +251,6 @@
 <hr>
 <p><strong>学习时间</strong>: 3小时<br><strong>实践项目</strong>: Todo应用的异步数据获取<br><strong>掌握程度</strong>: ⭐⭐⭐⭐</p>
 
-      
     </div>
 
     
@@ -253,443 +258,28 @@
     
 
     <footer class="post-footer">
-        <div class="post-eof"></div>
-      
+          <div class="post-tags">
+              <a href="/tags/JavaScript/" rel="tag"># JavaScript</a>
+              <a href="/tags/%E5%BC%82%E6%AD%A5%E7%BC%96%E7%A8%8B/" rel="tag"># 异步编程</a>
+              <a href="/tags/Promise/" rel="tag"># Promise</a>
+              <a href="/tags/async-await/" rel="tag"># async/await</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2025/07/31/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB%EF%BC%9ATransformer%E6%9E%B6%E6%9E%84%E8%A7%A3%E6%9E%90/" rel="prev" title="深度学习论文阅读：Transformer架构解析">
+                  <i class="fa fa-angle-left"></i> 深度学习论文阅读：Transformer架构解析
+                </a>
+            </div>
+            <div class="post-nav-item">
+            </div>
+          </div>
     </footer>
   </article>
 </div>
 
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://otis12.github.io/2025/07/31/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB%EF%BC%9ATransformer%E6%9E%B6%E6%9E%84%E8%A7%A3%E6%9E%90/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Otis12">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Otis12 的博客">
-      <meta itemprop="description" content="一个记录技术学习和生活感悟的地方">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | Otis12 的博客">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2025/07/31/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB%EF%BC%9ATransformer%E6%9E%B6%E6%9E%84%E8%A7%A3%E6%9E%90/" class="post-title-link" itemprop="url">深度学习论文阅读：Transformer架构解析</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-      
-
-      <time title="创建时间：2025-07-31 15:23:12 / 修改时间：15:24:44" itemprop="dateCreated datePublished" datetime="2025-07-31T15:23:12+08:00">2025-07-31</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB/" itemprop="url" rel="index"><span itemprop="name">论文阅读</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h1 id="Transformer架构深度解析"><a href="#Transformer架构深度解析" class="headerlink" title="Transformer架构深度解析"></a>Transformer架构深度解析</h1><h2 id="论文信息"><a href="#论文信息" class="headerlink" title="论文信息"></a>论文信息</h2><ul>
-<li><strong>标题</strong>: Attention Is All You Need</li>
-<li><strong>作者</strong>: Vaswani et al.</li>
-<li><strong>发表年份</strong>: 2017</li>
-<li><strong>会议</strong>: NIPS 2017</li>
-</ul>
-<h2 id="核心贡献"><a href="#核心贡献" class="headerlink" title="核心贡献"></a>核心贡献</h2><h3 id="1-摒弃RNN和CNN"><a href="#1-摒弃RNN和CNN" class="headerlink" title="1. 摒弃RNN和CNN"></a>1. 摒弃RNN和CNN</h3><p>Transformer完全基于attention机制，不使用循环神经网络或卷积神经网络。</p>
-<h3 id="2-Self-Attention机制"><a href="#2-Self-Attention机制" class="headerlink" title="2. Self-Attention机制"></a>2. Self-Attention机制</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Self-Attention的核心计算</span></span><br><span class="line">Attention(Q, K, V) = softmax(QK^T / √d_k)V</span><br></pre></td></tr></table></figure>
-
-<h3 id="3-多头注意力"><a href="#3-多头注意力" class="headerlink" title="3. 多头注意力"></a>3. 多头注意力</h3><ul>
-<li>允许模型同时关注不同位置的信息</li>
-<li>提高了模型的表达能力</li>
-</ul>
-<h2 id="架构分析"><a href="#架构分析" class="headerlink" title="架构分析"></a>架构分析</h2><h3 id="Encoder-Decoder结构"><a href="#Encoder-Decoder结构" class="headerlink" title="Encoder-Decoder结构"></a>Encoder-Decoder结构</h3><ul>
-<li><strong>Encoder</strong>: 6层相同的层</li>
-<li><strong>Decoder</strong>: 6层相同的层</li>
-<li>每层包含多头注意力和前馈网络</li>
-</ul>
-<h3 id="位置编码"><a href="#位置编码" class="headerlink" title="位置编码"></a>位置编码</h3><p>由于没有循环或卷积，需要注入位置信息：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">PE(pos, 2i) = sin(pos/10000^(2i/d_model))</span><br><span class="line">PE(pos, 2i+1) = cos(pos/10000^(2i/d_model))</span><br></pre></td></tr></table></figure>
-
-<h2 id="实验结果"><a href="#实验结果" class="headerlink" title="实验结果"></a>实验结果</h2><ul>
-<li>在WMT 2014翻译任务上达到SOTA</li>
-<li>训练速度比RNN模型快很多</li>
-<li>参数效率更高</li>
-</ul>
-<h2 id="个人思考"><a href="#个人思考" class="headerlink" title="个人思考"></a>个人思考</h2><ol>
-<li><strong>优势</strong>: 并行化训练、长距离依赖建模能力强</li>
-<li><strong>局限</strong>: 计算复杂度随序列长度平方增长</li>
-<li><strong>启发</strong>: 注意力机制的强大潜力</li>
-</ol>
-<h2 id="后续影响"><a href="#后续影响" class="headerlink" title="后续影响"></a>后续影响</h2><ul>
-<li>BERT、GPT等模型的基础</li>
-<li>开启了大模型时代</li>
-<li>影响了整个NLP领域</li>
-</ul>
-<hr>
-<p><strong>阅读时间</strong>: 2小时<br><strong>理解难度</strong>: ⭐⭐⭐⭐<br><strong>推荐指数</strong>: ⭐⭐⭐⭐⭐</p>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://otis12.github.io/2024/12/21/%E6%88%91%E7%9A%84%E7%AC%AC%E4%B8%80%E7%AF%87%E6%96%B0%E5%8D%9A%E5%AE%A2/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Otis12">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Otis12 的博客">
-      <meta itemprop="description" content="一个记录技术学习和生活感悟的地方">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | Otis12 的博客">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2024/12/21/%E6%88%91%E7%9A%84%E7%AC%AC%E4%B8%80%E7%AF%87%E6%96%B0%E5%8D%9A%E5%AE%A2/" class="post-title-link" itemprop="url">我的第一篇新博客</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2024-12-21 21:33:21" itemprop="dateCreated datePublished" datetime="2024-12-21T21:33:21+08:00">2024-12-21</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2025-07-31 15:23:56" itemprop="dateModified" datetime="2025-07-31T15:23:56+08:00">2025-07-31</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/%E9%9A%8F%E7%AC%94/" itemprop="url" rel="index"><span itemprop="name">随笔</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h1 id="欢迎来到我的博客！"><a href="#欢迎来到我的博客！" class="headerlink" title="欢迎来到我的博客！"></a>欢迎来到我的博客！</h1><p>这是我重新开始写博客的第一篇文章。</p>
-<h2 id="关于这个博客"><a href="#关于这个博客" class="headerlink" title="关于这个博客"></a>关于这个博客</h2><p>这个博客是基于 Hexo 构建的，使用了 NexT 主题。</p>
-<h2 id="今天学到了什么"><a href="#今天学到了什么" class="headerlink" title="今天学到了什么"></a>今天学到了什么</h2><ul>
-<li>如何设置 Hexo 博客</li>
-<li>如何将博客部署到 GitHub Pages</li>
-<li>如何管理博客的源码和部署</li>
-</ul>
-<h2 id="接下来的计划"><a href="#接下来的计划" class="headerlink" title="接下来的计划"></a>接下来的计划</h2><ol>
-<li>继续完善博客的配置</li>
-<li>写更多有趣的文章</li>
-<li>分享技术经验</li>
-</ol>
-<p>感谢阅读！ 🎉</p>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://otis12.github.io/2024/11/04/%E6%88%91%E5%8D%9A%E5%AE%A2%E5%91%A2%EF%BC%9F%EF%BC%9F%EF%BC%9F/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Otis12">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Otis12 的博客">
-      <meta itemprop="description" content="一个记录技术学习和生活感悟的地方">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | Otis12 的博客">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2024/11/04/%E6%88%91%E5%8D%9A%E5%AE%A2%E5%91%A2%EF%BC%9F%EF%BC%9F%EF%BC%9F/" class="post-title-link" itemprop="url">我博客呢？？？</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2024-11-04 14:22:34" itemprop="dateCreated datePublished" datetime="2024-11-04T14:22:34+08:00">2024-11-04</time>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://otis12.github.io/2024/11/04/Hello-World%20!!!/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Otis12">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Otis12 的博客">
-      <meta itemprop="description" content="一个记录技术学习和生活感悟的地方">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | Otis12 的博客">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2024/11/04/Hello-World%20!!!/" class="post-title-link" itemprop="url">Hello World!</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-      
-
-      <time title="创建时间：2024-11-04 14:01:00 / 修改时间：14:29:02" itemprop="dateCreated datePublished" datetime="2024-11-04T14:01:00+08:00">2024-11-04</time>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h1 id="开天辟地的前夜！！！"><a href="#开天辟地的前夜！！！" class="headerlink" title="开天辟地的前夜！！！"></a>开天辟地的前夜！！！</h1><p>  在同门小虎的激励下，终于准备开始写博客了！好！很愉快！决定了！应当爱！应当劳动！就这样！！！！</p>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://otis12.github.io/2024/08/27/hello-world/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Otis12">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Otis12 的博客">
-      <meta itemprop="description" content="一个记录技术学习和生活感悟的地方">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | Otis12 的博客">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2024/08/27/hello-world/" class="post-title-link" itemprop="url">Hello World</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2024-08-27 15:35:10" itemprop="dateCreated datePublished" datetime="2024-08-27T15:35:10+08:00">2024-08-27</time>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <p>Welcome to <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a target="_blank" rel="noopener" href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a target="_blank" rel="noopener" href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a target="_blank" rel="noopener" href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/writing.html">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/server.html">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/generating.html">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
 
 
 
